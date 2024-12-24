@@ -35,3 +35,22 @@ spec:
     - port: 3306 # The ports to expose
   selector:
     app: mysql # Selector used to apply service on all Objects with label app=mysql
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: database-configs
+  namespace: k8s-demo
+data:
+  DATABASE_USERNAME: root
+  DATABASE_NAME: test
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: database-secrets
+  namespace: k8s-demo
+type:
+  Opaque
+data:
+  DATABASE_PASSWORD: cGFzc3dvcmQ=
